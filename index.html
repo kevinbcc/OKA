@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沖繩4天3夜完整行程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #3d3d3d;
+            background: linear-gradient(135deg, #f7f3f0 0%, #ede4dc 50%, #e8ddd4 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 253, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(214, 188, 167, 0.3);
+            border: 1px solid rgba(238, 225, 213, 0.5);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #6b5b73;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .dates {
+            font-size: 1.2rem;
+            color: #9d8189;
+            font-weight: 300;
+        }
+
+        .day-card {
+            background: rgba(255, 253, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 25px rgba(214, 188, 167, 0.2), 0 2px 6px rgba(107, 91, 115, 0.1);
+            border: 1px solid rgba(238, 225, 213, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .day-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(214, 188, 167, 0.25), 0 4px 12px rgba(107, 91, 115, 0.15);
+        }
+
+        .day-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e8b4b8, #f2c2c2, #edc0c4);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .day-title {
+            font-size: 1.8rem;
+            color: #5a4d5e;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d6bca7;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .day-title:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #e8b4b8, #f2c2c2);
+        }
+
+        .day-number {
+            background: linear-gradient(135deg, #e8b4b8, #e0a8ac);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(232, 180, 184, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .route-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(240, 235, 227, 0.6);
+            border-radius: 15px;
+            border-left: 4px solid #d6bca7;
+        }
+
+        .route-title {
+            font-size: 1.3rem;
+            color: #6b5b73;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .route-details {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .route-details li {
+            background: rgba(250, 248, 245, 0.9);
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(214, 188, 167, 0.12);
+            border: 1px solid rgba(238, 225, 213, 0.3);
+            position: relative;
+            padding-left: 55px;
+            transition: all 0.2s ease;
+            color: #3d3d3d;
+            font-weight: 500;
+        }
+
+        .route-details li:hover {
+            background: rgba(245, 243, 240, 0.95);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(214, 188, 167, 0.18);
+        }
+
+        .route-details li:before {
+            content: "🚃";
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+        }
+
+        .route-details li:nth-child(odd):before {
+            content: "🚌";
+        }
+
+        .route-details li:nth-child(3n):before {
+            content: "🚶‍♂️";
+        }
+
+        /* 突出顯示費用和時間 */
+        .route-details li:has-text("¥"), .route-details li:contains("¥") {
+            border-left: 4px solid #e8b4b8;
+        }
+
+        .route-details li strong, .route-details li b {
+            color: #e8b4b8;
+            font-weight: 600;
+        }
+
+        .route-details li:before {
+            content: "🚃";
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .route-details li:nth-child(odd):before {
+            content: "🚌";
+        }
+
+        .route-details li:nth-child(3n):before {
+            content: "🚶‍♂️";
+        }
+
+        .time-info {
+            background: linear-gradient(135deg, #e8b4b8, #f2c2c2);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(232, 180, 184, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .time-info h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #deb6ab, #e8c4a0);
+            color: white;
+            padding: 25px;
+            border-radius: 18px;
+            margin-top: 25px;
+            box-shadow: 0 6px 18px rgba(222, 182, 171, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .recommendations h3 {
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .recommendations li {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .tips {
+            background: linear-gradient(135deg, #c49991, #d4a595);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 30px;
+            box-shadow: 0 5px 18px rgba(196, 153, 145, 0.3);
+        }
+
+        .tips h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header {
+                padding: 30px 15px;
+            }
+
+            .day-card {
+                padding: 20px;
+            }
+
+            .day-title {
+                font-size: 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .route-section {
+                padding: 15px;
+            }
+
+            .route-title {
+                font-size: 1.1rem;
+            }
+
+            .route-details li {
+                padding: 10px 15px;
+                padding-left: 45px;
+                font-size: 0.9rem;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .day-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .route-details li {
+                padding-left: 40px;
+            }
+
+            .route-details li:before {
+                left: 10px;
+                font-size: 1rem;
+            }
+        }
+
+        .floating-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 253, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 10px;
+            box-shadow: 0 6px 20px rgba(214, 188, 167, 0.25);
+            border: 1px solid rgba(238, 225, 213, 0.4);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: block;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e8b4b8, #e0a8ac);
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 8px 0;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 10px rgba(232, 180, 184, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg, #e0a8ac, #d89ca0);
+            transform: scale(1.15);
+            box-shadow: 0 6px 18px rgba(232, 180, 184, 0.5);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .floating-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏝️ 沖繩4天3夜完整行程</h1>
+            <div class="dates">8/11 - 8/14</div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title">
+                <div class="day-number">1</div>
+                <div>Day 1｜8/11（一）抵達 → 國際通</div>
+            </div>
+            
+            <div class="route-section">
+                <div class="route-title">📍 那霸機場 → 旭橋站（住宿）</div>
+                <ul class="route-details">
+                    <li>單軌電車（Yui-Rail）</li>
+                    <li>約 12 分鐘｜¥300</li>
+                    <li>出站後走路約 5 分鐘到 KIYAZA Resort</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 旭橋 → 國際通（牧志站一帶）</div>
+                <ul class="route-details">
+                    <li>搭單軌至「牧志站」或「美榮橋站」</li>
+                    <li>約 5 分鐘｜¥230</li>
+                    <li>步行可逛平和通、牧志公設市場、藥妝店等</li>
+                    <li>回程同樣搭單軌</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title">
+                <div class="day-number">2</div>
+                <div>Day 2｜8/12（二）首里城 → 琉球玻璃村</div>
+            </div>
+            
+            <div class="route-section">
+                <div class="route-title">📍 旭橋站 → 首里站</div>
+                <ul class="route-details">
+                    <li>搭單軌直達（Yui-Rail）</li>
+                    <li>約 20 分鐘｜¥340</li>
+                    <li>從首里站步行約 15–20 分鐘到首里城（沿途可散步）</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 首里城 → 琉球玻璃村</div>
+                <ul class="route-details">
+                    <li>步行回「首里站」 → 坐單軌到「赤嶺站」</li>
+                    <li>在赤嶺站搭公車「89號」往糸滿方向 → 「玻璃村入口站」下車</li>
+                    <li>單軌 + 公車共約 60 分鐘</li>
+                    <li>單軌 ¥340 + 公車 ¥400 左右</li>
+                    <li>下車後步行約 5–10 分鐘進入玻璃村</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 琉球玻璃村 → 旭橋站</div>
+                <ul class="route-details">
+                    <li>回程搭「89號公車」直達「旭橋站」</li>
+                    <li>約 50 分鐘｜¥500</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title">
+                <div class="day-number">3</div>
+                <div>Day 3｜8/13（三）DMM 水族館 → 瀨長島 → 美國村</div>
+            </div>
+            
+            <div class="route-section">
+                <div class="route-title">📍 旭橋站 → 赤嶺站（轉公車）</div>
+                <ul class="route-details">
+                    <li>單軌 5 分鐘｜¥260</li>
+                    <li>出赤嶺站後轉乘「95號」or「105號」公車 → 豐崎站（DMM 水族館旁）</li>
+                    <li>公車約 15 分鐘｜¥300</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 DMM → 瀨長島</div>
+                <ul class="route-details">
+                    <li>步行前往「豐崎 BT」巴士站 → 搭「TOKYU Bus」前往「瀨長島酒店前」</li>
+                    <li>約 15 分鐘｜¥250</li>
+                    <li>公車班次少，建議提早查好時刻表（可用 NAVITIME）</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 瀨長島 → 美國村（北谷）</div>
+                <ul class="route-details">
+                    <li>步行回豐崎 BT</li>
+                    <li>搭乘「120號公車」往北谷・名護方向 → 「桑江站」下車</li>
+                    <li>約 1 小時｜¥700</li>
+                    <li>步行約 10 分鐘可到美國村摩天輪區</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 美國村 → 旭橋站</div>
+                <ul class="route-details">
+                    <li>回程搭「28號」、「29號」或「120號」公車</li>
+                    <li>約 1 小時｜¥700</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title">
+                <div class="day-number">4</div>
+                <div>Day 4｜8/14（四）波上宮 → 午餐 → 機場</div>
+            </div>
+            
+            <div class="route-section">
+                <div class="route-title">📍 KIYAZA Resort → 波上宮</div>
+                <ul class="route-details">
+                    <li>從飯店步行至旭橋站（約5分鐘）</li>
+                    <li>搭單軌電車至「縣廳前站」</li>
+                    <li>約 2 分鐘｜¥230</li>
+                    <li>從縣廳前站步行約 15 分鐘到波上宮</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 波上宮參觀</div>
+                <ul class="route-details">
+                    <li>時間：9:00-10:00</li>
+                    <li>參拜神社、欣賞海景、拍照留念</li>
+                    <li>波上宮旁就是波之上海灘，可欣賞美麗海景</li>
+                </ul>
+            </div>
+
+            <div class="recommendations">
+                <h3>🍽️ 推薦餐廳選擇</h3>
+                <ul>
+                    <li><strong>波之上海灘附近小食堂</strong>：當地家庭料理</li>
+                    <li><strong>縣廳前站周邊</strong>：步行回縣廳前站路上有多家餐廳</li>
+                    <li><strong>國際通入口處</strong>：距離縣廳前站很近，選擇較多</li>
+                </ul>
+            </div>
+
+            <div class="route-section">
+                <div class="route-title">📍 午餐後 → 那霸機場</div>
+                <ul class="route-details">
+                    <li><strong>方案一：</strong>從用餐地點搭計程車直達機場（約 15-20 分鐘｜¥1,500-2,500）最省時間的選擇</li>
+                    <li><strong>方案二：</strong>回縣廳前站搭單軌電車至那霸機場站（約 15 分鐘｜¥300）</li>
+                </ul>
+            </div>
+
+            <div class="time-info">
+                <h4>⏰ 建議時間安排</h4>
+                <div style="list-style: none; padding-left: 0;">
+                    <div style="margin: 8px 0; padding: 8px 0;">8:30 從飯店出發</div>
+                    <div style="margin: 8px 0; padding: 8px 0;">9:00-10:00 參觀波上宮</div>
+                    <div style="margin: 8px 0; padding: 8px 0;">10:30-11:30 午餐</div>
+                    <div style="margin: 8px 0; padding: 8px 0;">12:00 前往機場（14:00班機，建議12:00前抵達機場辦理check-in）</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips">
+            <h3>💡 交通小提醒</h3>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <strong>🎫 優惠券券</strong><br>
+                    建議購買單軌電車一日券或二日券，較為划算
+                </div>
+                <div class="tip-item">
+                    <strong>📱 交通查詢</strong><br>
+                    公車可使用 NAVITIME 或 Google Maps 查詢時刻表
+                </div>
+                <div class="tip-item">
+                    <strong>✈️ 機場提醒</strong><br>
+                    最後一天建議預留充足時間，避免趕飛機
+                </div>
+                <div class="tip-item">
+                    <strong>🧳 行李服務</strong><br>
+                    行李可考慮在機場宅配服務，減輕負擔
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-nav">
+        <a href="#" class="nav-item" onclick="scrollToDay(1)">1</a>
+        <a href="#" class="nav-item" onclick="scrollToDay(2)">2</a>
+        <a href="#" class="nav-item" onclick="scrollToDay(3)">3</a>
+        <a href="#" class="nav-item" onclick="scrollToDay(4)">4</a>
+    </div>
+
+    <script>
+        function scrollToDay(dayNumber) {
+            const dayCards = document.querySelectorAll('.day-card');
+            if (dayCards[dayNumber - 1]) {
+                dayCards[dayNumber - 1].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // 添加滾動動畫效果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 初始化動畫
+        document.querySelectorAll('.day-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // 頁面加載完成後顯示第一個卡片
+        window.addEventListener('load', () => {
+            const firstCard = document.querySelector('.day-card');
+            if (firstCard) {
+                firstCard.style.opacity = '1';
+                firstCard.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
+</body>
+</html>
