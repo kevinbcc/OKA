@@ -271,8 +271,13 @@
         }
 
         @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
             .container {
                 padding: 15px;
+                padding-bottom: 80px; /* 為底部導航預留空間 */
             }
 
             .header h1 {
@@ -313,26 +318,43 @@
             }
 
             .floating-nav {
-                right: 15px;
+                left: 50%;
+                right: auto;
                 top: auto;
-                bottom: 20px;
-                transform: none;
+                bottom: 0;
+                transform: translateX(-50%);
                 flex-direction: row;
                 display: flex;
-                padding: 8px;
-                border-radius: 25px;
-                box-shadow: 0 4px 15px rgba(214, 188, 167, 0.3);
+                padding: 12px 20px;
+                border-radius: 25px 25px 0 0;
+                box-shadow: 0 -4px 20px rgba(214, 188, 167, 0.4);
+                background: rgba(255, 253, 250, 0.98);
+                backdrop-filter: blur(15px);
+                border: none;
+                border-top: 1px solid rgba(238, 225, 213, 0.6);
+                width: 100%;
+                max-width: 300px;
+                transition: transform 0.3s ease;
             }
 
             .nav-item {
-                width: 40px;
-                height: 40px;
-                margin: 0 4px;
+                width: 45px;
+                height: 45px;
+                margin: 0 8px;
                 font-size: 1rem;
+                box-shadow: 0 2px 8px rgba(232, 180, 184, 0.3);
+            }
+
+            .nav-item:hover {
+                transform: scale(1.05);
             }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding-bottom: 75px; /* 調整小螢幕的底部空間 */
+            }
+
             .header h1 {
                 font-size: 1.8rem;
             }
@@ -353,16 +375,15 @@
             }
 
             .floating-nav {
-                right: 10px;
-                bottom: 15px;
-                padding: 6px;
+                padding: 10px 15px;
+                max-width: 280px;
             }
 
             .nav-item {
-                width: 35px;
-                height: 35px;
-                margin: 0 3px;
-                font-size: 0.9rem;
+                width: 40px;
+                height: 40px;
+                margin: 0 6px;
+                font-size: 0.95rem;
             }
         }
 
@@ -383,14 +404,13 @@
         }
 
         .nav-item {
-            display: block;
+            display: flex;
             width: 45px;
             height: 45px;
             border-radius: 50%;
             background: linear-gradient(135deg, #e8b4b8, #e0a8ac);
             color: white;
             text-decoration: none;
-            display: flex;
             align-items: center;
             justify-content: center;
             margin: 8px 0;
@@ -406,6 +426,33 @@
             transform: scale(1.15);
             box-shadow: 0 6px 18px rgba(232, 180, 184, 0.5);
             border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-toggle {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e8b4b8, #e0a8ac);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(232, 180, 184, 0.4);
+            z-index: 1001;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .nav-toggle:hover {
+            background: linear-gradient(135deg, #e0a8ac, #d89ca0);
+            transform: scale(1.1);
+        }
+
+        .floating-nav.hidden {
+            transform: translateX(-50%) translateY(100%);
         }
     </style>
 </head>
@@ -614,6 +661,8 @@
         <a href="#" class="nav-item" onclick="scrollToDay(4)">4</a>
     </div>
 
+    <button class="nav-toggle" onclick="toggleNavigation()">📍</button>
+
     <script>
         function scrollToDay(dayNumber) {
             const dayCards = document.querySelectorAll('.day-card');
@@ -622,6 +671,20 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
+            }
+        }
+
+        function toggleNavigation() {
+            const nav = document.querySelector('.floating-nav');
+            const toggle = document.querySelector('.nav-toggle');
+            
+            nav.classList.toggle('hidden');
+            
+            // 更新按鈕圖標
+            if (nav.classList.contains('hidden')) {
+                toggle.textContent = '📍';
+            } else {
+                toggle.textContent = '✖️';
             }
         }
 
@@ -654,6 +717,16 @@
             if (firstCard) {
                 firstCard.style.opacity = '1';
                 firstCard.style.transform = 'translateY(0)';
+            }
+        });
+
+        // 在手機版自動隱藏導航欄（可選）
+        window.addEventListener('load', () => {
+            if (window.innerWidth <= 768) {
+                const nav = document.querySelector('.floating-nav');
+                const toggle = document.querySelector('.nav-toggle');
+                nav.classList.add('hidden');
+                toggle.textContent = '📍';
             }
         });
     </script>
