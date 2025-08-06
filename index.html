@@ -270,9 +270,14 @@
             backdrop-filter: blur(5px);
         }
 
+        /* 響應式設計 */
         @media (max-width: 768px) {
             .nav-toggle {
-                display: block;
+                display: block !important;
+                position: fixed !important;
+                bottom: 70px !important;
+                right: 20px !important;
+                z-index: 1001 !important;
             }
 
             .container {
@@ -318,35 +323,36 @@
             }
 
             .floating-nav {
-                left: 50%;
-                right: auto;
-                top: auto;
-                bottom: 0;
-                transform: translateX(-50%);
-                flex-direction: row;
-                display: flex;
-                padding: 12px 20px;
-                border-radius: 25px 25px 0 0;
-                box-shadow: 0 -4px 20px rgba(214, 188, 167, 0.4);
-                background: rgba(255, 253, 250, 0.98);
-                backdrop-filter: blur(15px);
-                border: none;
-                border-top: 1px solid rgba(238, 225, 213, 0.6);
-                width: 100%;
-                max-width: 300px;
-                transition: transform 0.3s ease;
+                left: 50% !important;
+                right: auto !important;
+                top: auto !important;
+                bottom: 0 !important;
+                transform: translateX(-50%) !important;
+                flex-direction: row !important;
+                display: flex !important;
+                padding: 12px 20px !important;
+                border-radius: 25px 25px 0 0 !important;
+                box-shadow: 0 -4px 20px rgba(214, 188, 167, 0.4) !important;
+                background: rgba(255, 253, 250, 0.98) !important;
+                backdrop-filter: blur(15px) !important;
+                border: none !important;
+                border-top: 1px solid rgba(238, 225, 213, 0.6) !important;
+                width: 100% !important;
+                max-width: 300px !important;
+                transition: transform 0.3s ease !important;
+                z-index: 1000 !important;
             }
 
             .nav-item {
-                width: 45px;
-                height: 45px;
-                margin: 0 8px;
-                font-size: 1rem;
-                box-shadow: 0 2px 8px rgba(232, 180, 184, 0.3);
+                width: 45px !important;
+                height: 45px !important;
+                margin: 0 8px !important;
+                font-size: 1rem !important;
+                box-shadow: 0 2px 8px rgba(232, 180, 184, 0.3) !important;
             }
 
             .nav-item:hover {
-                transform: scale(1.05);
+                transform: scale(1.05) !important;
             }
         }
 
@@ -375,15 +381,22 @@
             }
 
             .floating-nav {
-                padding: 10px 15px;
-                max-width: 280px;
+                padding: 10px 15px !important;
+                max-width: 280px !important;
             }
 
             .nav-item {
-                width: 40px;
-                height: 40px;
-                margin: 0 6px;
-                font-size: 0.95rem;
+                width: 40px !important;
+                height: 40px !important;
+                margin: 0 6px !important;
+                font-size: 0.95rem !important;
+            }
+
+            .nav-toggle {
+                width: 45px !important;
+                height: 45px !important;
+                bottom: 65px !important;
+                right: 15px !important;
             }
         }
 
@@ -443,7 +456,7 @@
             box-shadow: 0 4px 15px rgba(232, 180, 184, 0.4);
             z-index: 1001;
             transition: all 0.3s ease;
-            display: none;
+            display: none; /* 預設隱藏，在mobile才顯示 */
         }
 
         .nav-toggle:hover {
