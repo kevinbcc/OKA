@@ -273,16 +273,15 @@
         /* 響應式設計 */
         @media (max-width: 768px) {
             .nav-toggle {
-                display: block !important;
-                position: fixed !important;
-                bottom: 70px !important;
-                right: 20px !important;
-                z-index: 1001 !important;
+                display: none !important; /* 手機版完全隱藏Toggle按鈕 */
+            }
+
+            .floating-nav {
+                display: none !important; /* 手機版完全隱藏導航 */
             }
 
             .container {
-                padding: 15px;
-                padding-bottom: 80px; /* 為底部導航預留空間 */
+                padding: 15px; /* 移除底部預留空間 */
             }
 
             .header h1 {
@@ -321,44 +320,11 @@
             .tips-grid {
                 grid-template-columns: 1fr;
             }
-
-            .floating-nav {
-                left: 50% !important;
-                right: auto !important;
-                top: auto !important;
-                bottom: 0 !important;
-                transform: translateX(-50%) !important;
-                flex-direction: row !important;
-                display: flex !important;
-                padding: 12px 20px !important;
-                border-radius: 25px 25px 0 0 !important;
-                box-shadow: 0 -4px 20px rgba(214, 188, 167, 0.4) !important;
-                background: rgba(255, 253, 250, 0.98) !important;
-                backdrop-filter: blur(15px) !important;
-                border: none !important;
-                border-top: 1px solid rgba(238, 225, 213, 0.6) !important;
-                width: 100% !important;
-                max-width: 300px !important;
-                transition: transform 0.3s ease !important;
-                z-index: 1000 !important;
-            }
-
-            .nav-item {
-                width: 45px !important;
-                height: 45px !important;
-                margin: 0 8px !important;
-                font-size: 1rem !important;
-                box-shadow: 0 2px 8px rgba(232, 180, 184, 0.3) !important;
-            }
-
-            .nav-item:hover {
-                transform: scale(1.05) !important;
-            }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding-bottom: 75px; /* 調整小螢幕的底部空間 */
+                padding: 15px; /* 移除底部預留空間 */
             }
 
             .header h1 {
@@ -378,25 +344,6 @@
             .route-details li:before {
                 left: 10px;
                 font-size: 1rem;
-            }
-
-            .floating-nav {
-                padding: 10px 15px !important;
-                max-width: 280px !important;
-            }
-
-            .nav-item {
-                width: 40px !important;
-                height: 40px !important;
-                margin: 0 6px !important;
-                font-size: 0.95rem !important;
-            }
-
-            .nav-toggle {
-                width: 45px !important;
-                height: 45px !important;
-                bottom: 65px !important;
-                right: 15px !important;
             }
         }
 
@@ -733,13 +680,14 @@
             }
         });
 
-        // 在手機版自動隱藏導航欄（可選）
+        // 在手機版不執行導航相關功能
         window.addEventListener('load', () => {
             if (window.innerWidth <= 768) {
+                // 手機版：隱藏所有導航元素
                 const nav = document.querySelector('.floating-nav');
                 const toggle = document.querySelector('.nav-toggle');
-                nav.classList.add('hidden');
-                toggle.textContent = '📍';
+                if (nav) nav.style.display = 'none';
+                if (toggle) toggle.style.display = 'none';
             }
         });
     </script>
